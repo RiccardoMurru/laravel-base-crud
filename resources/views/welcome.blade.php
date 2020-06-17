@@ -13,7 +13,7 @@
     <div class="card text-center">
         <div class="card-body">
             <h2>Janitors</h2>
-            <a class="card-link" href="#">Go to Janitors Details</a>
+            <a class="card-link" href="{{ route('janitors.index') }}">Go to Janitors Details</a>
         </div>
     </div>
 </div>
