@@ -1,23 +1,21 @@
-<!DOCTYPE html>
-<html lang="en">
+@extends('templates.main')
 
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-</head>
+@section('main-content')
 
-<body>
-    <h1>Students</h1>
-
-    @foreach ($students as $student)
-    <div class="student">
-        <h4> {{ $student->name }}</h4>
-        <h5> {{ $student->email }}</h5>
-        <p> {{ $student->description }} </p>
+<div class="card-group">
+    <div class="card text-center">
+        <div class="card-body">
+            <h2>Students</h2>
+            <a class="card-link" href="{{ route('students.index') }}">Go to Students Details</a>
+        </div>
     </div>
 
-    @endforeach
-</body>
+    <div class="card text-center">
+        <div class="card-body">
+            <h2>Janitors</h2>
+            <a class="card-link" href="#">Go to Janitors Details</a>
+        </div>
+    </div>
+</div>
 
-</html>
+@endsection
