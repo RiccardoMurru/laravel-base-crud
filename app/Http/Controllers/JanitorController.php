@@ -27,7 +27,7 @@ class JanitorController extends Controller
      */
     public function create()
     {
-        //
+        return view('janitors.create');
     }
 
     /**
@@ -38,7 +38,25 @@ class JanitorController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $data = $request->all();
+
+        // validate
+        $request->validate([
+            'name' => 'required|unique:janitors|alpha|max:50',
+            'task' => 'required|alpha|max:50'
+        ]);
+
+        // dd($data);
+        $new_janitor = new Janitor();
+        $new_janitor->name = $data['name'];
+        $new_janitor->task = $data['task'];
+        $new_janitor->description = $data['description'];
+
+        $saved_janitor = $new_janitor->save();
+        // dd($saved_janitor);
+
+        $janitor = Janitor::find($new_janitor->id);
+        return redirect()->route('janitors.show', $janitor);
     }
 
     /**
@@ -49,7 +67,7 @@ class JanitorController extends Controller
      */
     public function show(Janitor $janitor)
     {
-        //
+        return view('janitors.show', compact('janitor'));
     }
 
     /**

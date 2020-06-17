@@ -11,6 +11,7 @@
 <body>
     <header class="mb-5">
         <nav class="navbar navbar-expand navbar-dark bg-dark">
+            <a class="navbar-brand" href="{{ route('home.index') }}">School DB</a>
             <ul class="navbar-nav ml-auto">
                 <li class="nav-item">
                     <a class="nav-link" href=" {{ route('home.index') }}">Home</a>
