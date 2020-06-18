@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Janitor;
 use Illuminate\Http\Request;
+use Illuminate\Validation\Rule;
 
 
 class JanitorController extends Controller
@@ -41,22 +42,17 @@ class JanitorController extends Controller
         $data = $request->all();
 
         // validate
-        $request->validate([
-            'name' => 'required|unique:janitors|alpha|max:50',
-            'task' => 'required|alpha|max:50'
-        ]);
+        $request->validate($this->validateRules());
 
-        // dd($data);
         $new_janitor = new Janitor();
-        $new_janitor->name = $data['name'];
-        $new_janitor->task = $data['task'];
-        $new_janitor->description = $data['description'];
+        $new_janitor->fill($data);
 
         $saved_janitor = $new_janitor->save();
-        // dd($saved_janitor);
 
-        $janitor = Janitor::find($new_janitor->id);
-        return redirect()->route('janitors.show', $janitor);
+        if ($saved_janitor) {
+            $janitor = Janitor::find($new_janitor->id);
+            return redirect()->route('janitors.show', $janitor);
+        }
     }
 
     /**
@@ -78,7 +74,7 @@ class JanitorController extends Controller
      */
     public function edit(Janitor $janitor)
     {
-        //
+        return view('janitors.edit', compact('janitor'));
     }
 
     /**
@@ -90,7 +86,17 @@ class JanitorController extends Controller
      */
     public function update(Request $request, Janitor $janitor)
     {
-        //
+        $data = $request->all();
+
+        // validate
+        $request->validate($this->validateRules($janitor->id));
+
+        $updated_janitor = $janitor->update($data);
+
+        if ($updated_janitor) {
+
+            return redirect()->route('janitors.show', $janitor->id);
+        }
     }
 
     /**
@@ -102,5 +108,23 @@ class JanitorController extends Controller
     public function destroy(Janitor $janitor)
     {
         //
+    }
+
+    // validation rules
+    private function validateRules($id = null)
+    {
+
+        return [
+            'name' => [
+                'required',
+                'max:50',
+                Rule::unique('janitors')->ignore($id)
+            ],
+            'task' => [
+                'required',
+                'max:50'
+            ],
+            'description' => 'required'
+        ];
     }
 }
