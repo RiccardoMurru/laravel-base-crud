@@ -107,7 +107,14 @@ class JanitorController extends Controller
      */
     public function destroy(Janitor $janitor)
     {
-        //
+        $janitor_ref = $janitor->name;
+
+        $deleted_janitor = $janitor->delete();
+
+        if ($deleted_janitor) {
+
+            return redirect()->route('janitors.index')->with('deleted', $janitor_ref);
+        }
     }
 
     // validation rules

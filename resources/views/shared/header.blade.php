@@ -14,13 +14,13 @@
             <a class="navbar-brand" href="{{ route('home.index') }}">School DB</a>
             <ul class="navbar-nav ml-auto">
                 <li class="nav-item">
-                    <a class="nav-link" href=" {{ route('home.index') }}">Home</a>
+                    <a class="nav-link" href="{{ route('home.index') }}">Home</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href=" {{ route('students.index') }}">Students</a>
+                    <a class="nav-link" href="{{ route('students.index') }}">Students</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="">Janitors</a>
+                    <a class="nav-link" href="{{ route('janitors.index') }}">Janitors</a>
                 </li>
             </ul>
         </nav>
