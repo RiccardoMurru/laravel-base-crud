@@ -24,6 +24,12 @@
             <a class="card-link" href="{{ route('teachers.index') }}">Go to Teachers Details</a>
         </div>
     </div>
+    <div class="card text-center">
+        <div class="card-body">
+            <h2>Books</h2>
+            <a class="card-link" href="{{ route('books.index') }}">Go to Books Details</a>
+        </div>
+    </div>
 </div>
 
 @endsection

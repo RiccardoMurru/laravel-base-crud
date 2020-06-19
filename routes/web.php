@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\BookController;
 use App\Http\Controllers\JanitorController;
 use App\Http\Controllers\TeacherController;
 use Illuminate\Support\Facades\Route;
@@ -18,4 +19,5 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', 'HomeController@index')->name('home.index');
 Route::get('/students', 'StudentsController@index')->name('students.index');
 Route::get('/teachers', 'TeacherController@index')->name('teachers.index');
+Route::get('/books', 'BookController@index')->name('books.index');
 Route::resource('janitors', 'JanitorController');
